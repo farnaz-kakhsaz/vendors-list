@@ -11,6 +11,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, "./dist"),
     filename: "bundle.js",
+    publicPath: "/",
   },
   module: {
     rules: [
@@ -20,13 +21,13 @@ module.exports = {
         use: ["babel-loader"],
       },
       {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"],
+      },
+      {
         test: /\.(png|svg|jpg|gif|ico)$/,
         exclude: /node_modules/,
         use: ["file-loader"],
-      },
-      {
-        test: /\.css$/,
-        use: ["style-loader", "css-loader"],
       },
       {
         test: /\.(ttf|woff|woff2|eot|otf)$/,
@@ -41,6 +42,7 @@ module.exports = {
   plugins: [htmlWebpackPluginConfig],
   devServer: {
     port: 3000,
+    historyApiFallback: true,
     contentBase: path.join(__dirname, "src"),
   },
 };
