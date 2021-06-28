@@ -28,6 +28,11 @@ module.exports = {
         test: /\.css$/,
         use: ["style-loader", "css-loader"],
       },
+      {
+        test: /\.(ttf|woff|woff2|eot|otf)$/,
+        exclude: /node_modules/,
+        use: ["file-loader"],
+      },
     ],
   },
   resolve: {
@@ -36,6 +41,6 @@ module.exports = {
   plugins: [htmlWebpackPluginConfig],
   devServer: {
     port: 3000,
-    watchContentBase: true,
+    contentBase: path.join(__dirname, "src"),
   },
 };
